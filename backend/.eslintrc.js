@@ -18,6 +18,7 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     camelcase: "off",
     "import/extensions": [
       "error",
