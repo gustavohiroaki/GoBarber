@@ -38,6 +38,8 @@ module.exports = {
     camelcase: 'off',
     '@typescript-eslint/ban-types': 'off',
     'no-use-before-define': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
   },
   settings: {
     'import/resolver': {
