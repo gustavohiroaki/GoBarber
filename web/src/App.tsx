@@ -1,10 +1,15 @@
 import React from 'react';
 
+import GlobalStyle from './styles/global';
+
+import SignIn from './pages/Signin';
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <SignIn />
+      <GlobalStyle />
+    </>
   );
 }
 
