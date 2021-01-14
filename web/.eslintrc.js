@@ -40,6 +40,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    'no-unused-expressions': 'off',
   },
   settings: {
     'import/resolver': {
