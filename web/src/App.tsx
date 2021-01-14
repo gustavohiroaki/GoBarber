@@ -5,11 +5,15 @@ import GlobalStyle from './styles/global';
 import SignIn from './pages/Signin';
 import SignUp from './pages/Signup';
 
+import AuthContext from './context/AuthContext';
+
 function App() {
   return (
     <>
-      <SignIn />
-      <GlobalStyle />
+      <AuthContext.Provider value={{ name: 'Gustavo' }}>
+        <SignIn />
+        <GlobalStyle />
+      </AuthContext.Provider>
     </>
   );
 }
