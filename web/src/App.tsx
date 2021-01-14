@@ -1,18 +1,19 @@
 import React from 'react';
 
 import GlobalStyle from './styles/global';
+import ToastContainer from './components/ToastContainer';
 
 import SignIn from './pages/Signin';
 import SignUp from './pages/Signup';
 
-import { AuthProvider } from './hooks/AuthContext';
+import AppProvider from './hooks';
 
 function App() {
   return (
     <>
-      <AuthProvider>
+      <AppProvider>
         <SignIn />
-      </AuthProvider>
+      </AppProvider>
 
       <GlobalStyle />
     </>
