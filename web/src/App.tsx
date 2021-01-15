@@ -1,22 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
 import ToastContainer from './components/ToastContainer';
 
-import SignIn from './pages/Signin';
-import SignUp from './pages/Signup';
+import Routes from './routes';
 
 import AppProvider from './hooks';
 
 function App() {
   return (
-    <>
+    <Router>
       <AppProvider>
-        <SignIn />
+        <Routes />
       </AppProvider>
 
       <GlobalStyle />
-    </>
+    </Router>
   );
 }
 
