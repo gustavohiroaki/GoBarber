@@ -16,14 +16,12 @@ import Button from '../../components/Button';
 import {
   Container,
   Title,
-  ForgotPassword,
-  ForgotPasswordText,
-  CreateAccountButton,
-  CreateAccountIcon,
-  CreateAccountButtonText,
+  BackToSignInButton,
+  BackToSignInIcon,
+  BackToSignInButtonText,
 } from './styles';
 
-const Signin: React.FC = () => {
+const Signup: React.FC = () => {
   const navigation = useNavigation();
 
   return (
@@ -40,9 +38,10 @@ const Signin: React.FC = () => {
           <Container>
             <Image source={logoImg} />
             <View>
-              <Title>Faça seu Logon</Title>
+              <Title>Crie sua Conta</Title>
             </View>
 
+            <Input name="name" icon="user" placeholder="Nome" />
             <Input name="email" icon="mail" placeholder="E-mail" />
             <Input name="password" icon="lock" placeholder="Senha" />
 
@@ -51,26 +50,22 @@ const Signin: React.FC = () => {
                 console.log('Funcionando');
               }}
             >
-              Entrar
+              Criar
             </Button>
-
-            <ForgotPassword>
-              <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
-            </ForgotPassword>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <CreateAccountButton
+      <BackToSignInButton
         onPress={() => {
-          navigation.navigate('Signup');
+          navigation.navigate('Signin');
         }}
       >
-        <CreateAccountIcon name="log-in" size={20} color="#ff9000" />
-        <CreateAccountButtonText>Criar uma Conta</CreateAccountButtonText>
-      </CreateAccountButton>
+        <BackToSignInIcon name="arrow-left" size={20} color="#fff" />
+        <BackToSignInButtonText>Voltar para logon</BackToSignInButtonText>
+      </BackToSignInButton>
     </>
   );
 };
 
-export default Signin;
+export default Signup;

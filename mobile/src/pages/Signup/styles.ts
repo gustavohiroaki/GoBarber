@@ -1,7 +1,7 @@
-import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { FeatherIcon } from '../../components/Input/styles';
+import { Platform } from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -17,17 +17,7 @@ export const Title = styled.Text`
   margin: 64px 0 24px;
 `;
 
-export const ForgotPassword = styled.TouchableOpacity`
-  margin-top: 24px;
-`;
-
-export const ForgotPasswordText = styled.Text`
-  color: #f4ede8;
-  font-size: 16px;
-  font-family: 'RobotoSlab-Regular';
-`;
-
-export const CreateAccountButton = styled.TouchableOpacity`
+export const BackToSignInButton = styled.TouchableOpacity`
   position: absolute;
   left: 0;
   bottom: 0;
@@ -42,11 +32,11 @@ export const CreateAccountButton = styled.TouchableOpacity`
   flex-direction: row;
 `;
 
-export const CreateAccountButtonText = styled.Text`
-  color: #ff9000;
+export const BackToSignInButtonText = styled.Text`
+  color: #fff;
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   margin-left: 16px;
 `;
 
-export const CreateAccountIcon = styled(FeatherIcon)``;
+export const BackToSignInIcon = styled(FeatherIcon)``;
