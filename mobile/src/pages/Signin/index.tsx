@@ -6,9 +6,12 @@ import {
   View,
   Image,
   Platform,
+  Alert,
 } from 'react-native';
+import * as Yup from 'yup';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.png';
 
@@ -25,12 +28,46 @@ import {
   CreateAccountButtonText,
 } from './styles';
 
+interface SignInFormData {
+  email: string;
+  password: string;
+}
+
 const Signin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
 
-  const handleSignin = useCallback((data: object) => {
-    console.log(data);
+  const handleSignin = useCallback(async (data: SignInFormData) => {
+    formRef.current?.setErrors({});
+    try {
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('E-Mail obrigatório')
+          .email('Digite um e-mail válido'),
+        password: Yup.string().required('Senha obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // await signIn({ email: data.email, password: data.password });
+
+      // history.push('/dashboard');
+    } catch (err) {
+      console.log(err.inner);
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+        return;
+      }
+
+      Alert.alert(
+        'Erro na autenticação',
+        'Ocorreu um erro ao fazer login, cheque as credenciais.',
+      );
+    }
   }, []);
 
   return (
