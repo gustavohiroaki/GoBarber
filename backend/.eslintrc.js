@@ -16,6 +16,18 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "prettier"],
   rules: {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "interface",
+        format: ["PascalCase"],
+        custom: {
+          regex: "^I[A-Z]",
+          match: true,
+        },
+      },
+    ],
+    "no-useless-constructor": "off",
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "@typescript-eslint/ban-ts-comment": "off",
