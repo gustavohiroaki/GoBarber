@@ -19,7 +19,7 @@ export default class ResetPasswordService {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
 
-    @inject("MailProvider")
+    @inject("UserTokensRepository")
     private userTokensRepository: IUsersTokensRepository,
 
     @inject("HashProvider")
