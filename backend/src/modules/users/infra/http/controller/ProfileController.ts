@@ -11,6 +11,8 @@ class ProfileController {
     const showProfile = container.resolve(ShowProfileService);
 
     const user = await showProfile.execute({ user_id });
+    // @ts-expect-error
+    delete user.password;
 
     return res.json(user);
   }
