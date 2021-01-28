@@ -55,7 +55,7 @@ export default class ListProviderMonthAvailabilityService {
         available: appointmentsInDay.length < 10,
       };
     });
-
+    console.log(availability);
     return availability;
   }
 }
