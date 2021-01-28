@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import AppointmentsController from "@modules/appointments/infra/http/controller/AppointmentsController";
+import ProviderAppointmentsController from "@modules/appointments/infra/http/controller/ProviderAppointmentsController";
 
 import ensureAuthenticated from "@modules/users/infra/http/middlewares/ensureAuthenticated";
 
@@ -15,5 +16,6 @@ appointmentsRouter.use(ensureAuthenticated);
 // });
 
 appointmentsRouter.post("/", AppointmentsController.create);
+appointmentsRouter.get("/me", ProviderAppointmentsController.index);
 
 export default appointmentsRouter;
