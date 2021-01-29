@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { classToClass } from "class-transformer";
 import { container } from "tsyringe";
 
 import AuthenticateUserService from "@modules/users/services/AuthenticateUserService";
@@ -14,10 +15,7 @@ class SessionsController {
       password,
     });
 
-    // @ts-expect-error
-    delete user.password;
-
-    return res.json({ user, token });
+    return res.json({ user: classToClass(user), token });
   }
 }
 
