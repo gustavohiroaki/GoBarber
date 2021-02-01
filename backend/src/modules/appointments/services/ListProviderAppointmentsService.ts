@@ -1,12 +1,11 @@
 import { inject, injectable } from "tsyringe";
-import { getDaysInMonth, getDate } from "date-fns";
 
 import Appointment from "@modules/appointments/infra/typeorm/entities/Appointment";
 import IAppointmentsRepository from "@modules/appointments/repositories/IAppointmentsRepository";
 
-// import AppError from "@shared/errors/AppError";
+import ICacheProvider from "@shared/providers/CacheProvider/models/ICacheProvider";
 
-import User from "@modules/users/infra/typeorm/entities/User";
+// import AppError from "@shared/errors/AppError";
 
 interface IRequest {
   provider_id: string;
@@ -19,7 +18,10 @@ interface IRequest {
 export default class ListProviderMonthAvailabilityService {
   constructor(
     @inject("AppointmentsRepository")
-    private appointmentsRepository: IAppointmentsRepository
+    private appointmentsRepository: IAppointmentsRepository,
+
+    @inject("CacheProvider")
+    private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({
