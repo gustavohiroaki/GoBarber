@@ -5,6 +5,7 @@ import AppError from "@shared/errors/AppError";
 
 import Appointment from "@modules/appointments/infra/typeorm/entities/Appointment";
 
+import INotificationsRepository from "@modules/notifications/repositories/INotificationsRepository";
 import IAppointmentsRepository from "@modules/appointments/repositories/IAppointmentsRepository";
 import ICacheProvider from "@shared/providers/CacheProvider/models/ICacheProvider";
 
@@ -19,6 +20,9 @@ class CreateAppointmentService {
   constructor(
     @inject("AppointmentsRepository")
     private appointmentsRepository: IAppointmentsRepository,
+
+    @inject("NotificationsRepository")
+    private notificationsRepository: INotificationsRepository,
 
     @inject("CacheProvider")
     private cacheProvider: ICacheProvider
@@ -57,6 +61,13 @@ class CreateAppointmentService {
       provider_id,
       user_id,
       date: appointmentDate,
+    });
+
+    const dateFormatted = format(appointmentDate, "dd/MM/yyyy 'às' HH:mm'h'");
+
+    await this.notificationsRepository.create({
+      recipient_id: provider_id,
+      content: `Novo agendamento para o dia ${dateFormatted}`,
     });
 
     await this.cacheProvider.invalidate(
