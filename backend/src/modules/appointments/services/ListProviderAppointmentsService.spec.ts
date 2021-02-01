@@ -1,19 +1,23 @@
 import FakeAppointmentsRepository from "@modules/appointments/repositories/fakes/FakeAppointmentsRepository";
-// import FakeUsersRepository from "@modules/users/repositories/fakes/FakeUsersRepository";
+import FakeCacheProvider from "@shared/providers/CacheProvider/fakes/FakeCacheProvider";
+
 import ListProviderAppointmentsService from "@modules/appointments/services/ListProviderAppointmentsService";
 
 // import AppError from "@shared/errors/AppError";
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
-// let fakeUsersRepository: FakeUsersRepository;
+let fakeCacheProvider: FakeCacheProvider;
+
 let listProviderAppointmentsService: ListProviderAppointmentsService;
 
 describe("ListProviderAppointments", () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
-    // fakeUsersRepository = new FakeUsersRepository();
+    fakeCacheProvider = new FakeCacheProvider();
+
     listProviderAppointmentsService = new ListProviderAppointmentsService(
-      fakeAppointmentsRepository
+      fakeAppointmentsRepository,
+      fakeCacheProvider
     );
   });
 
