@@ -4,6 +4,7 @@ import Appointment from "@modules/appointments/infra/typeorm/entities/Appointmen
 import IAppointmentsRepository from "@modules/appointments/repositories/IAppointmentsRepository";
 
 import ICacheProvider from "@shared/providers/CacheProvider/models/ICacheProvider";
+import { classToClass } from "class-transformer";
 
 // import AppError from "@shared/errors/AppError";
 
@@ -46,7 +47,7 @@ export default class ListProviderMonthAvailabilityService {
         }
       );
       console.log("buscou do banco");
-      await this.cacheProvider.save(cacheKey, appointments);
+      await this.cacheProvider.save(cacheKey, classToClass(appointments));
     }
 
     return appointments;
