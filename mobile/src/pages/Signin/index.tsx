@@ -7,6 +7,7 @@ import {
   Image,
   Platform,
   Alert,
+  TextInput,
 } from 'react-native';
 import * as Yup from 'yup';
 import { Form } from '@unform/mobile';
@@ -36,6 +37,7 @@ interface SignInFormData {
 }
 
 const Signin: React.FC = () => {
+  const passwordInputRef = useRef<TextInput>(null);
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
   const { signIn } = useAuth();
@@ -97,8 +99,29 @@ const Signin: React.FC = () => {
               onSubmit={handleSignin}
               style={{ width: '100%' }}
             >
-              <Input name="email" icon="mail" placeholder="E-mail" />
-              <Input name="password" icon="lock" placeholder="Senha" />
+              <Input
+                autoCorrect={false}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                name="email"
+                icon="mail"
+                placeholder="E-mail"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  passwordInputRef.current?.focus();
+                }}
+              />
+              <Input
+                ref={passwordInputRef}
+                secureTextEntry
+                name="password"
+                icon="lock"
+                placeholder="Senha"
+                returnKeyType="send"
+                onSubmitEditing={() => {
+                  formRef.current?.submitForm();
+                }}
+              />
 
               <Button
                 onPress={() => {

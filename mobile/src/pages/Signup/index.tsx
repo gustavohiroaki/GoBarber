@@ -7,6 +7,7 @@ import {
   Image,
   Platform,
   Alert,
+  TextInput,
 } from 'react-native';
 import * as Yup from 'yup';
 import { Form } from '@unform/mobile';
@@ -37,6 +38,8 @@ interface SignUpFormData {
 const Signup: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
+  const emailInputRef = useRef<TextInput>(null);
+  const passwordInputRef = useRef<TextInput>(null);
 
   const handleSignup = useCallback(
     async (data: SignUpFormData) => {
@@ -101,9 +104,42 @@ const Signup: React.FC = () => {
               onSubmit={handleSignup}
               style={{ width: '100%' }}
             >
-              <Input name="name" icon="user" placeholder="Nome" />
-              <Input name="email" icon="mail" placeholder="E-mail" />
-              <Input name="password" icon="lock" placeholder="Senha" />
+              <Input
+                autoCorrect={true}
+                autoCapitalize="words"
+                name="name"
+                icon="user"
+                placeholder="Nome"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  emailInputRef.current?.focus();
+                }}
+              />
+              <Input
+                ref={emailInputRef}
+                keyboardType="email-address"
+                autoCorrect={false}
+                autoCapitalize="none"
+                name="email"
+                icon="mail"
+                placeholder="E-mail"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  passwordInputRef.current?.focus();
+                }}
+              />
+              <Input
+                ref={passwordInputRef}
+                secureTextEntry
+                name="password"
+                icon="lock"
+                placeholder="Senha"
+                textContentType="newPassword"
+                returnKeyType="send"
+                onSubmitEditing={() => {
+                  formRef.current?.submitForm();
+                }}
+              />
 
               <Button
                 onPress={() => {
