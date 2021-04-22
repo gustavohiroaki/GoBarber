@@ -58,7 +58,6 @@ export default class ListProviderMonthAvailabilityService {
           isAfter(compareDate, new Date()) && appointmentsInDay.length < 10,
       };
     });
-    console.log(availability);
     return availability;
   }
 }
